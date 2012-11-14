@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Easing Visualizer</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/skeleton.css">
+	<link rel="stylesheet" href="css/layout.css">
+	<link rel="stylesheet" href="css/easingvisualizer.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script type="text/javascript" src="js/easingvisualizer.js"></script>
+</head>
+<body>
+
+
+
+	<!-- Primary Page Layout
+	================================================== -->
+
+	<!-- Delete everything in this .container and get started on your own site! -->
+
+	<div class="container">
+		<div class="sixteen columns">
+			<h1 class="remove-bottom" style="margin-top: 40px">Easing Visualizer</h1>
+			<hr />
+		</div>
+		<div class="two-thirds column">
+			<h3>Visual Representation</h3>
+			<div id="easingvisualizer-container">
+				<canvas id="easingvisualizer" width="100%" height="100%"></canvas>
+			</div>
+		</div>
+		<div class="one-third column">
+			<h3>Easing Selector</h3>
+			<p>Select an easing equation below:</p>
+			<label>Easing:</label><select id="easingvisualizer-selector"></select><input id="easingvisualizer-copy" type="button" value="Copy">
+			<label>Duration(ms):</label><input id="easingvisualizer-duration" type="text" size="5" value="1000">
+			<p>Or build your own:</p>
+			<textarea id="easingvisualizer-script"></textarea>
+
+			<input id="easingvisualizer-play" type="button" value="Play">
+		</div>
+
+	</div><!-- container -->
+
+
+<!-- End Document
+================================================== -->
+	
+
+	<script>
+		var ev = new EasingVisualizer('#easingvisualizer', '#easingvisualizer-selector', '#easingvisualizer-script', '#easingvisualizer-duration', '#easingvisualizer-play', '#easingvisualizer-copy');
+	</script>
+</body>
+</html>
