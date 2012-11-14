@@ -1,0 +1,24 @@
+
+
+#easingvisualizer-container {
+	height: 300px;
+	background-color: #cccccc;
+}
+
+#easingvisualizer {
+}
+
+#easingvisualizer-script {
+	font-family: monospace;
+
+	width: 100%;
+	height: 150px;
+}
+
+#easingvisualizer-selector {
+	float: left;
+}
+#easingvisualizer-copy {
+	float: left;
+	margin-top: -8px;
+}
