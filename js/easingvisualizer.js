@@ -320,6 +320,15 @@ var EasingLibrary = {
   easeInOutBounce: function(x, t, b, c, d) {
     if (t < d / 2) return EasingLibrary.easeInBounce(x, t * 2, 0, c, d) * .5 + b;
     return EasingLibrary.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
+  },
+  //Some Oliver creations/experiments
+  easeOutYoYo: function (x, t, b, c, d) {
+    if (x < 0.5)
+        t = t*2;
+    else {
+        t = t*2 - x;
+    }
+    return -c * (t /= d) * (t - 2) + b;
   }
 };
 
