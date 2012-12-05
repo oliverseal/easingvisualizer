@@ -329,9 +329,77 @@ var EasingLibrary = {
         t = t*2 - x;
     }
     return -c * (t /= d) * (t - 2) + b;
+  },
+  //soulwire organics (Justin Windle)
+  soulwireEaseInSine: function (x, t, b, c, d) {
+    return -c * Math.cos(x * (Math.PI / 2)) + c + b;
+  },
+  soulwireEaseOutSine: function (x, t, b, c, d) {
+    return c * Math.sin(x * (Math.PI / 2)) + b;
+  },
+  soulwireBreathShort: function (x, t, b, c, d) {
+    return c * Math.abs(Math.cos(x)*Math.sin(x)) + b;
+  },
+  soulwireTwinkleIn: function (x, t, b, c, d) {
+    t = t * 0.0015;
+    var f = Math.sin(t)*Math.sin(t*1.5);
+    return b + Math.abs(f) * (c - b);
+  },
+  soulwireTwinkleOut: function (x, t, b, c, d) {
+    var f = Math.sin(Math.tan(Math.cos(x)*(1.2*(x*2.05))));
+    return b + Math.abs(f) * (c - b);
+  },
+  soulwireAttack: function (x, t, b, c, d) {
+    t = t * 0.0015;
+    var f = Math.sin(Math.tan(t)*0.05);
+    return b + Math.abs(f) * (c - b);
+  },
+  soulwireElasticGrow: function (x, t, b, c, d) {
+    t = t * 0.0015;
+    var f = Math.cos(Math.sin(t*3))*Math.sin(t*0.2);
+    return b + Math.abs(f) * (c - b);
+  },
+  soulwireKnock: function (x, t, b, c, d) {
+    t = t * 0.0015;
+    var f = Math.sin(Math.pow(8,Math.sin(t)));
+    return b + Math.abs(f) * (c - b);
+  },
+  soulwireBounce: function (x, t, b, c, d) {
+    t = t * 0.0015;
+    var f = Math.sin(Math.exp(Math.cos(t*0.8))*2);
+    return b + Math.abs(f) * (c - b);
+  },
+  soulwireBlinkOut: function (x, t, b, c, d) {
+    t = t * 0.0015;
+    var f = Math.sin(t-Math.PI*Math.tan(t)*0.01);
+    return b + Math.abs(f) * (c - b);
+  },
+  soulwireHeartbeat: function (x, t, b, c, d) {
+    t = t * 0.0015;
+    var f = Math.pow(Math.sin(t*Math.PI),12);
+    return b + Math.abs(f) * (c - b);
+  },
+  soulwireHeartbeatNatural: function (x, t, b, c, d) {
+    t = t * 0.0015;
+    var f = Math.cos(Math.sin(t)*Math.tan(t*Math.PI)*Math.PI/8);
+    return b + Math.abs(f) * (c - b);
+  },
+  soulwireHeartbeatErratic: function (x, t, b, c, d) {
+    t = t * 0.0015;
+    var f = Math.sin(Math.tan(t)*Math.pow(Math.sin(t),10));
+    return b + Math.abs(f) * (c - b);
+  },
+  soulwireHeartbeatSteady: function (x, t, b, c, d) {
+    t = t * 0.0015;
+    var f = Math.cos(Math.sin(t*3)+t*3);
+    return b + Math.abs(f) * (c - b);
+  },
+  soulwireBounceGrow: function (x, t, b, c, d) {
+    t = t * 0.0015;
+    var f = Math.pow(Math.abs(Math.sin(t*2))*0.6,Math.sin(t*2))*0.6;
+    return b + Math.abs(f) * (c - b);
   }
 };
-
 
 
 (function() {
