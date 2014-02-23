@@ -1,4 +1,4 @@
-
+var time = Number(new Date());
 function EasingVisualizer(canvasSelector, optionsSelector, customScriptSelector, durationSelector, playSelector, copySelector) {
 	this.canvas = document.querySelector(canvasSelector);
 
@@ -11,31 +11,31 @@ function EasingVisualizer(canvasSelector, optionsSelector, customScriptSelector,
 	this.duration = 1500;
 	this.currentEquation = EasingLibrary.easeInQuad;
 
-	this.onAnimationFrameProxy = ScopeLocker.lock(this, this.onAnimationFrame);
+	this.onAnimationFrameProxy = this.onAnimationFrame.bind(this);
 
 	this.visualize(this.currentEquation);
 
 
 	if (this.optionsSelect) {
 		this.fillOptions(EasingLibrary);
-		this.optionsSelect.addEventListener('change', ScopeLocker.lock(this, this.onOptionSelectChange));
+		this.optionsSelect.addEventListener('change', this.onOptionSelectChange.bind(this));
 	}
 	
 	if (this.customScriptTextArea) {
 		this.customScriptTextArea.value = this.currentEquation.toString();
-		this.customScriptTextArea.addEventListener('change', ScopeLocker.lock(this, this.onCustomScriptChange));
+		this.customScriptTextArea.addEventListener('change', this.onCustomScriptChange.bind(this));
 	}
 
 	if (this.durationTextField) {
 		this.durationTextField.value = this.duration;
-		this.durationTextField.addEventListener('change', ScopeLocker.lock(this, this.onDurationTextFieldChange));
+		this.durationTextField.addEventListener('change', this.onDurationTextFieldChange.bind(this));
 	}
 
 	if (this.playButton) {
-		this.playButton.addEventListener('click', ScopeLocker.lock(this, this.onPlayButtonClick));
+		this.playButton.addEventListener('click', this.onPlayButtonClick.bind(this));
 	}
 	if (this.copyButton) {
-		this.copyButton.addEventListener('click', ScopeLocker.lock(this, this.onCopyButtonClick));
+		this.copyButton.addEventListener('click', this.onCopyButtonClick.bind(this));
 	}
 }
 
@@ -92,7 +92,8 @@ EasingVisualizer.prototype.applyEasing = function(easingEquation, percentComplet
 	return (end - start) * eased + start;
 }
 
-EasingVisualizer.prototype.onAnimationFrame = function(time) {
+EasingVisualizer.prototype.onAnimationFrame = function() {
+  time = Number(new Date());
 	this.draw((time - this.animationStartTime)/(this.animationEndTime - this.animationStartTime));
 	if (time <= this.animationEndTime) {
 		requestAnimationFrame(this.onAnimationFrameProxy);
@@ -157,24 +158,6 @@ EasingVisualizer.prototype.onPlayButtonClick = function(e) {
 EasingVisualizer.prototype.onCopyButtonClick = function(e) {
 	this.customScriptTextArea.value = this.currentEquation.toString();
 	this.visualize();
-}
-
-//I blatantly stole this logic from Actionscript 2 concepts WAY BACK IN DA DAY
-function ScopeLocker(f) { this.func = f; }
-ScopeLocker.prototype.func = function(){}
-ScopeLocker.lock = function(obj, func) {
-    var f = function() {
-        var target = arguments.callee.target;
-        var func = arguments.callee.func;
-        if(func && target)
-            return func.apply(target, arguments);
-        return null;
-    };
-
-    f.target = obj;
-    f.func = func;
-
-    return f;
 }
 
 //////////////// Robert Penner equations ////////////////////////////////////////////////
